@@ -19,4 +19,7 @@ public interface BookDao {
 
     // get all books
     List<Book> getAllBooks();
+
+    // get book by title
+    List<Book> getBooksByTitle(String title);
 }

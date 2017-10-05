@@ -7,12 +7,11 @@
 
 <jsp:include page="inc/navbar.jsp"/>
 
-<c:url var="addBook" value="/add"/>
+<c:url var="editBook" value="/edit"/>
 
 <div class="container">
-    <h2>Добавление книги</h2>
 
-    <form:form action="${addBook}" modelAttribute="book" method="post">
+    <form:form action="${editBook}" commandName="book" method="post">
 
         <div class="form-group">
             <form:label path="title" class="control-label">
@@ -32,12 +31,13 @@
             <form:label path="author" class="control-label">
                 <spring:message text="Автор:"/>
             </form:label>
-            <form:input path="author" class="form-control"/>
+            <form:input path="author" class="form-control" readonly="true"/>
         </div>
 
         <div class="form-group">
             <form:label path="isbn" class="control-label">
-                <spring:message text="ISBN:"/></form:label>
+                <spring:message text="ISBN:"/>
+            </form:label>
             <form:input path="isbn" class="form-control"/>
         </div>
 
@@ -50,14 +50,48 @@
 
         <div class="form-group hidden">
             <form:label path="readAlready" class="control-label">
-                <spring:message text="Прочитано?"/></form:label>
-            <form:input path="readAlready" class="form-control"/>
+                <spring:message text="Прочитал?"/>
+            </form:label>
+            <form:input path="readAlready" class="form-control" value="false"/>
+        </div>
+
+        <div class="form-group hidden">
+            <form:input path="id" class="form-control"/>
         </div>
 
         <div class="form-group">
-            <form:button class="btn btn-primary">Добавить</form:button>
+            <form:button class="btn btn-success">Обновить</form:button>
         </div>
+
     </form:form>
+
+
+    <div class="table-responsive">
+        <table class="table table-hover table-striped">
+            <thead>
+            <tr>
+                <th>Название:</th>
+                <th>Описание:</th>
+                <th>Автор:</th>
+                <th>ISBN</th>
+                <th>Год:</th>
+                <th>Читал?</th>
+            </tr>
+            </thead>
+
+            <tr>
+                <td>${book.title}<br></td>
+                <td>${book.description}</td>
+                <td>${book.author}</td>
+                <td>${book.isbn}</td>
+                <td>${book.printYear}</td>
+                <td>${book.readAlready}</td>
+            </tr>
+
+        </table>
+    </div>
+
 </div>
+
 </body>
 </html>

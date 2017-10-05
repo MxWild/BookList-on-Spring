@@ -15,7 +15,7 @@
     <!-- Разрешаем использование аннотаций Spring MVC (то есть @Controller и.т.д) -->
     <mvc:annotation-driven/>
     <mvc:view-controller path="/" view-name="index"/>
-    <mvc:resources mapping="/resouces/**" location="WEB-INF/resources"/>
+    <mvc:resources mapping="/resources/**" location="/WEB-INF/resources"/>
     <!-- Указываем где будет гулять спринг, для поиска наших аннотация Т.е. указываем наш основной пакет -->
     <context:component-scan base-package="system"/>
 

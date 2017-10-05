@@ -31,7 +31,7 @@ public class BookDaoImpl implements BookDao {
         session = sessionFactory.getCurrentSession();
         Book book = session.load(Book.class, id);
 
-        if (book == null) session.delete(book);
+        if (book != null) session.delete(book);
     }
 
     public Book getBookById(int id) {
@@ -48,4 +48,14 @@ public class BookDaoImpl implements BookDao {
 
         return booksList;
     }
+
+    @Override
+    public List<Book> getBooksByTitle(String title) {
+        session = sessionFactory.getCurrentSession();
+        List<Book> booksList = session.createQuery("from Book c where TITLE like '%" + title + "%'").list();
+
+        return booksList;
+    }
+
+
 }

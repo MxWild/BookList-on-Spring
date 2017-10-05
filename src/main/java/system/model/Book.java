@@ -27,7 +27,7 @@ public class Book {
     private int printYear;
 
     @Column(name = "READ_ALREADY")
-    private boolean readAlready;
+    private boolean readAlready = false;
 
     public int getId() {
         return id;
