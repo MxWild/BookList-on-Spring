@@ -7,7 +7,6 @@
 
 <jsp:include page="inc/navbar.jsp"/>
 
-
 <div class="container">
     <% int count = 0; %>
     <h2 class="page-header">Список Книг</h2>

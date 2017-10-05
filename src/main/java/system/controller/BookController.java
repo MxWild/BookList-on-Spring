@@ -27,6 +27,16 @@ public class BookController {
         return "index";
     }
 
+    @RequestMapping(value = "/search")
+    public String searchBookByTitle(@RequestParam("searchString") String searchString) {
+
+        if(searchString != null){
+            bookService.getBooksByTitle(searchString);
+        }
+
+        return "search";
+    }
+
     // form add book
     @RequestMapping(value="/add", method=RequestMethod.GET)
     public String addBookForm(Model model) {

@@ -19,6 +19,7 @@
                 <spring:message text="Название:"/>
             </form:label>
             <form:input path="title" class="form-control"/>
+            <form:errors path="title" class="text-danger"/>
         </div>
 
         <div class="form-group">

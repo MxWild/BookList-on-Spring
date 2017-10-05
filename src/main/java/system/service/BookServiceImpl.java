@@ -40,4 +40,10 @@ public class BookServiceImpl implements BookService {
     public List<Book> getAllBooks() {
         return bookDao.getAllBooks();
     }
+
+    @Override
+    @Transactional
+    public List<Book> getBooksByTitle(String title) {
+        return bookDao.getBooksByTitle(title);
+    }
 }
