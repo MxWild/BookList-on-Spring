@@ -28,10 +28,10 @@ public class BookController {
     }
 
     @RequestMapping(value = "/search")
-    public String searchBookByTitle(@RequestParam("searchString") String searchString) {
+    public String searchBookByTitle(@RequestParam("searchString") String searchString, Model model) {
 
         if(searchString != null){
-            bookService.getBooksByTitle(searchString);
+            model.addAttribute("searchedBooks", bookService.getBooksByTitle(searchString));
         }
 
         return "search";
