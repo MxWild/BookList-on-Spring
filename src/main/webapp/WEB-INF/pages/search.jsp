@@ -31,7 +31,7 @@
                     <td>${sbook.author}</td>
                     <td>${sbook.printYear}</td>
                     <c:choose>
-                        <c:when test="${book.readAlready}">
+                        <c:when test="${sbook.readAlready}">
                             <td>Прочитана</td>
                         </c:when>
                         <c:otherwise>

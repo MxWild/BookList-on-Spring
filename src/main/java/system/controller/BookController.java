@@ -1,12 +1,14 @@
 package system.controller;
 
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import system.model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import system.service.BookService;
+import javax.validation.Valid;
 
 @Controller
 public class BookController {
@@ -47,7 +49,10 @@ public class BookController {
 
     // method add book -> submit
     @RequestMapping(value="/add", method=RequestMethod.POST)
-    public String addBookSubmit(@ModelAttribute("book") Book book, Model model) {
+    public String addBookSubmit(@ModelAttribute("book") @Valid Book book, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "add";
+        }
         model.addAttribute("book", new Book());
         bookService.addBook(book);
 
