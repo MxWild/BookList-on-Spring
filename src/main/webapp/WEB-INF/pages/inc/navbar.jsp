@@ -5,9 +5,9 @@
 
 <nav class="navbar navbar-default">
     <div class="container">
-        <div class="navbar-header">
+        <%--<div class="navbar-header">
             <a class="navbar-brand" href="<c:url value="/"/>">BookList</a>
-        </div>
+        </div>--%>
         <ul class="nav navbar-nav">
             <li><a href="<c:url value="/"/>">Главная</a></li>
             <li><a href="<c:url value="/add"/>">Добавить книгу</a></li>

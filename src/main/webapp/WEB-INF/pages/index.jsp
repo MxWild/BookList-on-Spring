@@ -9,7 +9,7 @@
 
 <div class="container">
     <% int count = 0; %>
-    <h2 class="page-header">Список Книг</h2>
+    <h2 class="page-header text-center">Список Книг</h2>
 
     <a href="add" class="btn btn-warning">Добавить книгу</a>
 
@@ -23,12 +23,18 @@
                 <th>Автор:</th>
                 <th>ISBN</th>
                 <th>Год:</th>
-                <th>Читал?</th>
+                <th>Статус:</th>
             </tr>
             </thead>
 
             <c:forEach items="${allBooks}" var="book">
-                <tr>
+                <tr
+                        <c:choose>
+                            <c:when test="${book.readAlready}">
+                                class="info"
+                            </c:when>
+                        </c:choose>
+                >
                     <td><%= ++count %>
                     </td>
                     <td>
@@ -47,10 +53,10 @@
                     <td>${book.printYear}</td>
                     <c:choose>
                         <c:when test="${book.readAlready}">
-                            <td>Читал</td>
+                            <td><strong>Прочитана</strong></td>
                         </c:when>
                         <c:otherwise>
-                            <td>Нет</td>
+                            <td>Не прочитана</td>
                         </c:otherwise>
                     </c:choose>
                 </tr>
