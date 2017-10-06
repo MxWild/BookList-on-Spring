@@ -40,7 +40,7 @@ public class Book {
     @Pattern(regexp = "[\\d]{4}", message = "Поле год должно быть в виде YYYY")
     //@NotEmpty(message = "Поле год должно быть в виде YYYY")
     @Column(name = "PRINT_YEAR")
-    private int printYear = 2012;
+    private String printYear = "2012";
 
     @Column(name = "READ_ALREADY")
     private boolean readAlready = false;
@@ -85,11 +85,11 @@ public class Book {
         this.isbn = isbn;
     }
 
-    public int getPrintYear() {
+    public String getPrintYear() {
         return printYear;
     }
 
-    public void setPrintYear(int printYear) {
+    public void setPrintYear(String printYear) {
         this.printYear = printYear;
     }
 

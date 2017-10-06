@@ -69,8 +69,10 @@ public class BookController {
 
     // method edit book -> submit
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String editBookSubmit(@ModelAttribute Book book) {
-        //System.out.println(book.getId());
+    public String editBookSubmit(@ModelAttribute @Valid Book book, BindingResult result) {
+        if (result.hasErrors()) {
+            return "edit";
+        }
         bookService.updateBook(book);
 
         return "redirect:/";

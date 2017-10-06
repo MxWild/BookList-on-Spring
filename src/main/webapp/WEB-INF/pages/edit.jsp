@@ -50,6 +50,7 @@
                 <spring:message text="Год печати:"/>
             </form:label>
             <form:input path="printYear" cssClass="form-control"/>
+            <form:errors path="printYear" cssClass="text-danger"/>
         </div>
 
         <div class="form-group hidden">
