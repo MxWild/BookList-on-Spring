@@ -10,6 +10,9 @@ import org.springframework.ui.Model;
 import system.service.BookService;
 import javax.validation.Valid;
 
+// TODO Добавить пагинацию по странично (10 книг на странице)
+// TODO Добавиь сортировку по колонкам (прочитанные, по автору, по название)
+
 @Controller
 public class BookController {
 
@@ -24,9 +27,20 @@ public class BookController {
     // List of books
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public String listAllBooks(Model model) {
-        model.addAttribute("allBooks", bookService.getAllBooks());
+//        model.addAttribute("allBooks", bookService.getAllBooks());
+        model.addAttribute("allBooks", bookService.getOnlyTenBooks());
+//        model.addAttribute("numPages", bookService.getAllBooks().size());
+        model.addAttribute("startPage", 1);
+        model.addAttribute("endPage", 5);
 
         return "index";
+    }
+
+    //TODO Нужно это сделать, вывод по страницам
+    // List For Page Number N
+    @RequestMapping(value = "/page/{id}", method = RequestMethod.GET)
+    public String listBookOnPage() {
+        return "page"; // TODO Надо доделать
     }
 
     @RequestMapping(value = "/search")

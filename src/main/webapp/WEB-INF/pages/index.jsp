@@ -39,7 +39,8 @@
                     </td>
                     <td>
                             ${book.title}<br>
-                        <a class="btn btn-primary btn-sm <c:if test="${book.readAlready}">disabled</c:if>" href="/read/${book.id}" title="Читать"><span
+                        <a class="btn btn-primary btn-sm <c:if test="${book.readAlready}">disabled</c:if>"
+                           href="/read/${book.id}" title="Читать"><span
                                 class="glyphicon glyphicon-book"></span></a>
                         <a class="btn btn-success btn-sm" href="/edit/${book.id}" title="Обновить"><span
                                 class="glyphicon glyphicon-pencil"></span></a>
@@ -65,15 +66,17 @@
         </table>
     </div>
 
+    <%-- Пагинация по страницам startPage с коротой начать
+    endPage - на какой закончить --%>
 
     <div class="text-center">
         <div class="pagination">
-            <li class="active"><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
+            <c:forEach begin="${startPage}" end="${endPage}" var="i">
+                <li><a href="page/${i}">${i}</a></li>
+            </c:forEach>
         </div>
     </div>
+
 
     <hr>
     <footer>

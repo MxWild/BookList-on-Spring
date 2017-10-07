@@ -50,6 +50,17 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
+    public List<Book> getOnlyTenBooks() {
+        session = sessionFactory.getCurrentSession();
+        List<Book> booksList = session.createQuery("from Book")
+                                        .setFirstResult(0)
+                                        .setMaxResults(10)
+                                        .list();
+
+        return booksList;
+    }
+
+    @Override
     public List<Book> getBooksByTitle(String title) {
         session = sessionFactory.getCurrentSession();
         List<Book> booksList = session.createQuery("from Book c where TITLE like '%" + title + "%'").list();
@@ -57,5 +68,27 @@ public class BookDaoImpl implements BookDao {
         return booksList;
     }
 
+    // How limit result
+    /*
+        session = sessionFactory.getCurrentSession();
+        List<Book> bookList = sessionFactory.getCurrentSession().setFirstResult(start).setMaxResult(maxRows).list();
+
+        OR
+
+        public List<ExampleModel> listExampleModel() {
+            return listExampleModel(null, null);
+        }
+
+        public List<ExampleModel> listExampleModel(Integer first, Integer count) {
+        Query tmp = getSession().createQuery("from ExampleModel");
+
+        if (first != null)
+            tmp.setFirstResult(first);
+        if (count != null)
+            tmp.setMaxResults(count);
+
+        return (List<ExampleModel>)tmp.list();
+        }
+     */
 
 }

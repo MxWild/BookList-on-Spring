@@ -21,6 +21,9 @@ public interface BookService {
     // get all books
     List<Book> getAllBooks();
 
+    // get 10 books
+    public List<Book> getOnlyTenBooks();
+
     // get book by title
     List<Book> getBooksByTitle(String title);
 }
