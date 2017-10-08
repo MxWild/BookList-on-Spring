@@ -9,10 +9,11 @@
 
 <div class="container">
     <%--TODO возможно нужно вынести эту переменную в контроллер --%>
-    <% int count = 0; %>
+    <%--<% int count = 0; %>--%>
+    <c:set var="count" value="${countBook}"/>
     <h2 class="page-header text-center">Список Книг</h2>
 
-    <a href="add" class="btn btn-warning">Добавить книгу</a>
+    <a href="/add" class="btn btn-warning">Добавить книгу</a>
 
     <div class="table-responsive">
         <table class="table table-hover table-striped">
@@ -36,8 +37,9 @@
                             </c:when>
                         </c:choose>
                 >
-                    <td><%= ++count %>
-                    </td>
+                    <%--<td><%= ++count %></td>--%>
+                    <c:set var="count" value="${count+1}" scope="page"/>
+                    <td>${count}</td>
                     <td>
                             ${book.title}<br>
                         <a class="btn btn-primary btn-sm <c:if test="${book.readAlready}">disabled</c:if>"
@@ -67,13 +69,14 @@
         </table>
     </div>
 
-    <%-- Пагинация по страницам startPage с коротой начать
+
+    <%-- Пагинация по страницам startPage с которой начать
     endPage - на какой закончить --%>
 
     <div class="text-center">
         <div class="pagination">
             <c:forEach begin="${startPage}" end="${endPage}" var="i">
-                <li><a href="/page/?pageNum=${i}">${i}</a></li>
+                <li <c:if test="${currentPage == i}"> class="active"</c:if>> <a href="/page/?pageNum=${i}">${i}</a></li>
             </c:forEach>
         </div>
     </div>

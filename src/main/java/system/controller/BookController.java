@@ -19,6 +19,8 @@ public class BookController {
     private BookService bookService;
     private int startPage = 1;
     private int endPage = 0;
+    private int currentPage = 1;
+    private int countBook;
 //    private int endPage = (bookService.getAllBooks().size() % 10 > 0) ? (bookService.getAllBooks().size()/10 + 1) : (bookService.getAllBooks().size());
 
     @Autowired
@@ -31,23 +33,29 @@ public class BookController {
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public String listAllBooks(Model model) {
         endPage = bookService.getAllBooks().size() / 10;
-        if (endPage % 10 > 0) endPage++;
+        if (bookService.getAllBooks().size() % 10 > 0) endPage++;
+        countBook = 0;
 //        model.addAttribute("allBooks", bookService.getAllBooks());
         model.addAttribute("allBooks", bookService.getOnlyTenBooks(0));
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
+        model.addAttribute("currentPage", currentPage);
+        model.addAttribute("countBook", countBook);
 
         return "index";
     }
 
-    //TODO Нужно это сделать, вывод по страницам
     // List For Page Number N
     @RequestMapping(value = "/page", method = RequestMethod.GET)
     public String listBookOnPage(@RequestParam(value = "pageNum", required = false) Integer id, Model model) {
-
+        endPage = bookService.getAllBooks().size() / 10;
+        if (bookService.getAllBooks().size() % 10 > 0) endPage++;
+        countBook = id * 10 - 10;
         model.addAttribute("allBooks", bookService.getOnlyTenBooks(id * 10 - 10));
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
+        model.addAttribute("currentPage", id);
+        model.addAttribute("countBook", countBook);
 
         return "page";
     }
