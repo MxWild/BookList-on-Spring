@@ -8,8 +8,6 @@
 <jsp:include page="inc/navbar.jsp"/>
 
 <div class="container">
-    <%--TODO возможно нужно вынести эту переменную в контроллер --%>
-    <%--<% int count = 0; %>--%>
     <c:set var="count" value="${countBook}"/>
     <h2 class="page-header text-center">Список Книг</h2>
 
@@ -37,7 +35,6 @@
                             </c:when>
                         </c:choose>
                 >
-                    <%--<td><%= ++count %></td>--%>
                     <c:set var="count" value="${count+1}" scope="page"/>
                     <td>${count}</td>
                     <td>
