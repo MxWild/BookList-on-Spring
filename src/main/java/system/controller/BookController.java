@@ -10,7 +10,7 @@ import org.springframework.ui.Model;
 import system.service.BookService;
 import javax.validation.Valid;
 
-// TODO Добавиь сортировку по колонкам (прочитанные, по автору, по название)
+// TODO Добавить сортировку по колонкам (прочитанные, по автору, по название)
 
 @Controller
 public class BookController {
@@ -20,7 +20,6 @@ public class BookController {
     private int endPage;
     private int currentPage = 1;
     private int countBook;
-//    private int endPage = (bookService.getAllBooks().size() % 10 > 0) ? (bookService.getAllBooks().size()/10 + 1) : (bookService.getAllBooks().size());
 
     @Autowired
     @Qualifier(value = "bookService")
