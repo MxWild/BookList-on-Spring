@@ -50,10 +50,10 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public List<Book> getOnlyTenBooks() {
+    public List<Book> getOnlyTenBooks(int from) {
         session = sessionFactory.getCurrentSession();
         List<Book> booksList = session.createQuery("from Book")
-                                        .setFirstResult(0)
+                                        .setFirstResult(from)
                                         .setMaxResults(10)
                                         .list();
 

@@ -22,7 +22,7 @@ public interface BookService {
     List<Book> getAllBooks();
 
     // get 10 books
-    public List<Book> getOnlyTenBooks();
+    public List<Book> getOnlyTenBooks(int from);
 
     // get book by title
     List<Book> getBooksByTitle(String title);

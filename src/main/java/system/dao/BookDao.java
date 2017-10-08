@@ -21,7 +21,7 @@ public interface BookDao {
     List<Book> getAllBooks();
 
     // get 10 books
-    List<Book> getOnlyTenBooks();
+    List<Book> getOnlyTenBooks(int from);
 
     // get book by title
     List<Book> getBooksByTitle(String title);

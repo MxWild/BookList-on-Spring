@@ -17,6 +17,9 @@ import javax.validation.Valid;
 public class BookController {
 
     private BookService bookService;
+    private int startPage = 1;
+    private int endPage = 0;
+//    private int endPage = (bookService.getAllBooks().size() % 10 > 0) ? (bookService.getAllBooks().size()/10 + 1) : (bookService.getAllBooks().size());
 
     @Autowired
     @Qualifier(value = "bookService")
@@ -27,20 +30,26 @@ public class BookController {
     // List of books
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public String listAllBooks(Model model) {
+        endPage = bookService.getAllBooks().size() / 10;
+        if (endPage % 10 > 0) endPage++;
 //        model.addAttribute("allBooks", bookService.getAllBooks());
-        model.addAttribute("allBooks", bookService.getOnlyTenBooks());
-//        model.addAttribute("numPages", bookService.getAllBooks().size());
-        model.addAttribute("startPage", 1);
-        model.addAttribute("endPage", 5);
+        model.addAttribute("allBooks", bookService.getOnlyTenBooks(0));
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
 
         return "index";
     }
 
     //TODO Нужно это сделать, вывод по страницам
     // List For Page Number N
-    @RequestMapping(value = "/page/{id}", method = RequestMethod.GET)
-    public String listBookOnPage() {
-        return "page"; // TODO Надо доделать
+    @RequestMapping(value = "/page", method = RequestMethod.GET)
+    public String listBookOnPage(@RequestParam(value = "pageNum", required = false) Integer id, Model model) {
+
+        model.addAttribute("allBooks", bookService.getOnlyTenBooks(id * 10 - 10));
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+
+        return "page";
     }
 
     @RequestMapping(value = "/search")

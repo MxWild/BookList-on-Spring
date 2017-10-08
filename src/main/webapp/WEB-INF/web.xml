@@ -19,6 +19,10 @@
             <servlet-name>default</servlet-name>
             <url-pattern>/</url-pattern>
         </servlet-mapping>
+    
+    <!--<listener>
+        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+    </listener>-->
 
         <error-page>
             <error-code>404</error-code>
